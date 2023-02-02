@@ -172,13 +172,13 @@ with tab1:
             cm = sns.blend_palette([deep_pal[3], deep_pal[-2], deep_pal[2]], as_cmap=True)
             rows = pd.DataFrame(rows, columns = ['Position','Shooting/Saving','Passing','Aerial','Inters'])
             rows[['Shooting/Saving','Passing','Aerial','Inters']] = rows[['Shooting/Saving','Passing','Aerial','Inters']].astype(float)
-            st.subheader('Attributes Compared to NLS Average')
+            st.subheader('Attributes Compared to EPL Average')
             st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
             st.table(rows.style.background_gradient(axis=None,cmap=cm,subset=['Shooting/Saving','Passing','Aerial','Inters'],gmap = vals,vmin=-10,vmax=10).format({'Shooting/Saving':"{:.1f}",'Passing':"{:.1f}",'Aerial':"{:.1f}",'Inters':"{:.1f}"}))
         
        
-        st.write('The attributes chart compares the average attributes by position of the players who have played at least 5 games for this team to the NLS average. A high number shows that this team is above average in an attribute for a position, while a low number indicates it is below average.')
+        st.write('The attributes chart compares the average attributes by position of the players who have played at least 5 games for this team to the EPL average. A high number shows that this team is above average in an attribute for a position, while a low number indicates it is below average.')
     
     ######################################################################################################################
     ########################################### Player Details ###########################################################
