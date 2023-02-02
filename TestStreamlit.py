@@ -8,8 +8,11 @@ from Graph_Creators import Radar_Chart, Match_Chart, Match_Chart_Defensive,ShotM
 from MatchScroller import Match_Scroller,Match_Scroller_Lite
 import seaborn as sns
 st.set_page_config(layout="wide")
-tab1, tab2 = st.tabs(["Teams", "Division"])
-
+tab0, tab1, tab2 = st.tabs(["Note","Teams", "Division"])
+with tab0:
+    st.subheader('Notes on underlying data')
+    st.write('1) Data from the 2017/18 season (in the teams tab) was taken from https://github.com/koenvo/wyscout-soccer-match-event-dataset. The data for Premier League results this seaso was taken from https://www.footballwebpages.co.uk/premier-league/match-grid on 2 Feb, 2023.')
+    st.write('2) The squad of each team in the app is as it was at the end of the 2017/18 season. Thus, some players may be missing (e.g. a team may appear to have no goalkeeper!)')
 with tab1:
     
     col1,col2,col3 = st.columns(3)
