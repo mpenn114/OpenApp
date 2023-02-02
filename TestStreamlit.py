@@ -40,7 +40,7 @@ with tab1:
         
         team = teams_array[teams_orig == teams][0]
 
-        matchdata = pd.read_csv('MatchCSV.csv')
+        matchdata = pd.read_csv('MatchCSV.csv',header=None)
         matchdata.columns = ['Date','Home','Away','S1','S2']
 
         matchdata =matchdata[(matchdata['Home'] == team)|(matchdata['Away']==team)].to_numpy()
@@ -400,7 +400,7 @@ with tab1:
 
         team = teams_array[teams_orig == teams][0]
 
-        matchdata = pd.read_csv('MatchCSV.csv')
+        matchdata = pd.read_csv('MatchCSV.csv',header=None)
         matchdata.columns = ['Date','Home','Away','S1','S2']
 
         matchdata =matchdata[(matchdata['Home'] == team)|(matchdata['Away']==team)].to_numpy()
