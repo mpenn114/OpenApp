@@ -186,45 +186,47 @@ with tab1:
     ######################################################################################################################
     
     if views == "Player Detail":
+        try:
+            with col3:
+                players = st.selectbox(
+                        "Choose player:", lines[lines[:,2] == teams,1]
+                    )
 
-        with col3:
-            players = st.selectbox(
-                    "Choose player:", lines[lines[:,2] == teams,1]
-                )
+            index = (lines[:,1] == players)
+            col1,col4, col2, col5,col3 = st.columns([1.3,0.3,2.2, 0.3,3])
+            player = lines[index,0]
+            position = lines[index,3]
+            fig2,starts_out,subs_out,goals_out,assists_out,att_impact_out = Match_Chart(player)
+            fig3,def_impact_out = Match_Chart_Defensive(player)
+            with col1:
+                st.subheader('Basic Stats:')
+                st.write('Position: ' + position[0])
+                st.write('Starts (Subs): ' + str(round(starts_out)) +  ' (' + str(round(subs_out)) + ')')
+                st.write('Goals (Assists): ' + str(round(goals_out))+  ' (' + str(round(assists_out)) + ')')
+                st.write('Attacking Impact / Game: ' + str(round(att_impact_out,2)))
+                if starts_out + (1/3)*subs_out > 0:
+                    st.write('Defensive Impact / Game: ' + str(round(def_impact_out/(starts_out + (1/3)*subs_out),2)))
+                else:
+                    st.write('Defensive Impact / Game: ' + str(0))
 
-        index = (lines[:,1] == players)
-        col1,col4, col2, col5,col3 = st.columns([1.3,0.3,2.2, 0.3,3])
-        player = lines[index,0]
-        position = lines[index,3]
-        fig2,starts_out,subs_out,goals_out,assists_out,att_impact_out = Match_Chart(player)
-        fig3,def_impact_out = Match_Chart_Defensive(player)
-        with col1:
-            st.subheader('Basic Stats:')
-            st.write('Position: ' + position[0])
-            st.write('Starts (Subs): ' + str(round(starts_out)) +  ' (' + str(round(subs_out)) + ')')
-            st.write('Goals (Assists): ' + str(round(goals_out))+  ' (' + str(round(assists_out)) + ')')
-            st.write('Attacking Impact / Game: ' + str(round(att_impact_out,2)))
-            if starts_out + (1/3)*subs_out > 0:
-                st.write('Defensive Impact / Game: ' + str(round(def_impact_out/(starts_out + (1/3)*subs_out),2)))
-            else:
-                st.write('Defensive Impact / Game: ' + str(0))
+            with col3:
+                st.subheader('Attributes:')
+                fig = Radar_Chart(players)
+                st.pyplot(fig)
+            with col1:
+                st.subheader('Shot Data:')
+                fig = ShotMap(player)
+                st.pyplot(fig)
+            with col2:
+                st.subheader('Attacking Impact:')
 
-        with col3:
-            st.subheader('Attributes:')
-            fig = Radar_Chart(players)
-            st.pyplot(fig)
-        with col1:
-            st.subheader('Shot Data:')
-            fig = ShotMap(player)
-            st.pyplot(fig)
-        with col2:
-            st.subheader('Attacking Impact:')
+                st.pyplot(fig2)
 
-            st.pyplot(fig2)
+                st.subheader('Defensive Impact:')
 
-            st.subheader('Defensive Impact:')
-
-            st.pyplot(fig3)
+                st.pyplot(fig3)
+        except:
+            st.write('No data available')
 
             
     ######################################################################################################################
