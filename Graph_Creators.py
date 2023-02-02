@@ -289,7 +289,7 @@ def ShotMap(playerid):
     fig=  plt.figure(figsize=(0.5599588265568708*16, 16))
     plt.imshow(image,extent = [0,52.5,-34,34])
     colors = np.array([[0.9,0.2,0.2,1],[0.2,0.7,0.2,1],[0.9,0.9,0.1,1]])
-    plt.scatter(50-relevant_rows[:,2],-relevant_rows[:,3],s=121,c=colors[relevant_rows[:,1].astype(int)])
+    plt.scatter(50-relevant_rows[:,2],relevant_rows[:,3],s=121,c=colors[relevant_rows[:,1].astype(int)])
     plt.yticks([])
     plt.xticks([])
     return fig
